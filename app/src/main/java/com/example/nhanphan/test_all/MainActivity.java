@@ -1,52 +1,53 @@
 package com.example.nhanphan.test_all;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Notification;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-        EditText edtMsg;
+        TextView txtmsg;
+        Button btn;
+        String msg;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            android.support.v7.app.ActionBar actionBar  = getSupportActionBar();
-            actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setIcon(R.drawable.home);
-            actionBar.setTitle("Action");
-            edtMsg = (EditText) findViewById(R.id.editmsg);
-        }
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_bai1,menu);
-            return true;
-        }
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            int id = item.getItemId();
-            if (id == R.id.search) {
-                edtMsg.setText("Search...");
-                return true;
-            }
-            else if (id == R.id.search){
-                edtMsg.setText("Share...");
-                return true;
-            }
 
-            else if (id == R.id.action_about){
-                edtMsg.setText("About...");
-                return true;
-            }
-            else if (id == R.id.action_settings){
-                edtMsg.setText("Setting...");
-                return true;
-            }
-            return super.onOptionsItemSelected(item);
+            txtmsg = (TextView) findViewById(R.id.txtmsg);
+            btn = (Button) findViewById(R.id.btnalert);
+
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Thoát")
+                            .setIcon(R.drawable.exit)
+                            .setMessage("Bạn có muốn thoát chương trình?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    msg = "YES" + Integer.toString(which);
+                                    txtmsg.setText("YES" + which);
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    txtmsg.setText("No" + which);
+                                }
+                            }).show();
+
+                }
+            });
         }
     }
