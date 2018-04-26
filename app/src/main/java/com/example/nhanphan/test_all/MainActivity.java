@@ -13,41 +13,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-        TextView txtmsg;
-        Button btn;
-        String msg;
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
 
-            txtmsg = (TextView) findViewById(R.id.txtmsg);
-            btn = (Button) findViewById(R.id.btnalert);
+    Button btn;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btn = (Button) findViewById(R.id.btnExit);
 
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle("Thoát")
-                            .setIcon(R.drawable.exit)
-                            .setMessage("Bạn có muốn thoát chương trình?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    msg = "YES" + Integer.toString(which);
-                                    txtmsg.setText("YES" + which);
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    txtmsg.setText("No" + which);
-                                }
-                            }).show();
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setIcon(R.drawable.home)
+                        .setTitle("Thoat")
+                        .setMessage("Bạn có muốn thoát chương trình")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MainActivity.this,"Bạn vừa chọn YES",Toast.LENGTH_SHORT).show();
+                            }
+                        }).show();
 
-                }
-            });
-        }
+            }
+        });
     }
+}

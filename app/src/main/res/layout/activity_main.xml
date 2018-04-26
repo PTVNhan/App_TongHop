@@ -12,18 +12,20 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/txtmsg"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:gravity="center"
+        android:background="#E0F2F1"
+        android:text="Pickers"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:id="@+id/textView" />
 
     <Button
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alert Dialog"
-        android:layout_gravity="center"
-        android:id="@+id/btnalert" />
+        android:text="Exit"
+        android:id="@+id/btnExit" />
 
 </LinearLayout>
